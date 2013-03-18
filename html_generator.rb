@@ -24,13 +24,23 @@ class HtmlGenerator
 	private
 
 	def display_product(product)
-		puts "<p>#{product['name']}</p>"
+		puts "<h2>#{product['name']}</h2>"
+		puts "<img src=#{product['image_thumb_url']}></img>"
+		puts "<ul>
+				<li>#{product['id']}</li>
+				<li>#{product['producer_name']}</li>
+				<li>#{product['primary_category']}</li>
+				<li>#{product['secondary_category']}</li>
+				<li>#{product['package']}</li>
+				<li>$#{product['price_in_cents'].to_f/100}</li>
+			</ul>"
 	end
 
 	def print_header
 		puts "<html>"
 		puts 	"<head>"
 		puts 		"<title>Connoisseur in the head</title>"
+		puts    "<style> ul{float: right}</style>"
 		puts 	"</head>"
 		puts 	"<body>"
 	end
