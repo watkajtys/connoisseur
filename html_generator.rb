@@ -12,6 +12,10 @@ class HtmlGenerator
 		print_footer
 	end
 
+	private
+	#private methods are only available to methods within this class. 
+	#There is no need for router.rb to access these methods. 
+
 	def print_header
 		puts "<html>"
 		puts 	"<head>"
