@@ -1,14 +1,15 @@
-# Access params passed into the app
+require_relative 'html_generator'
 
 if ARGV.empty? 
 	puts "USAGE: bla"
 else
 	puts "You passed in arguements! YAY!"
+	generator = HtmlGenerator.new
 
 	if ARGV[0] == "index"
-		puts "Action: INDEX"
+		generator.index
 	elsif ARGV[0] == "show"
-		puts "Action: Show"
+		generator.show
 	else
 		puts "Refer to USAGE. 'index' or 'show' are acceptable."
 	end
