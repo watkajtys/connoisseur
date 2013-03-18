@@ -4,7 +4,10 @@ require 'json'
 class HtmlGenerator
 	def show 
 		print_header
-		puts "Action Show"
+		puts "Action: Show"
+
+		product = retrieve_data("http://lcboapi.com/products/#{id}")
+
 		print_footer
 	end
 
@@ -12,7 +15,7 @@ class HtmlGenerator
 		print_header
 		puts "Action: Index"
 
-		products = retrieve_data
+		products = retrieve_data("http://lcboapi.com/products/")
 
 		products.each do |product|
 			display_product(product)
@@ -23,11 +26,15 @@ class HtmlGenerator
 
 	private
 
+	def display_product_detail
+		#generate show page content here
+	end
+
 	def display_product(product)
 		puts "<h2>#{product['name']}</h2>"
 		puts "<img src=#{product['image_thumb_url']}></img>"
 		puts "<ul>
-				<li>#{product['id']}</li>
+				<li>ID: #{product['id']}</li>
 				<li>#{product['producer_name']}</li>
 				<li>#{product['primary_category']}</li>
 				<li>#{product['secondary_category']}</li>
@@ -40,7 +47,6 @@ class HtmlGenerator
 		puts "<html>"
 		puts 	"<head>"
 		puts 		"<title>Connoisseur in the head</title>"
-		puts    "<style> ul{float: right}</style>"
 		puts 	"</head>"
 		puts 	"<body>"
 	end
@@ -50,8 +56,8 @@ class HtmlGenerator
 		puts "</html>"
 	end
 
-	def retrieve_data()
-		response = open("http://lcboapi.com/products").read
+	def retrieve_data(url)
+		response = open(url).read
 		data = JSON.parse(response)
 		return data["result"]
 	end
