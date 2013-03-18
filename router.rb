@@ -3,7 +3,6 @@ require_relative 'html_generator'
 if ARGV.empty? 
 	puts "USAGE: bla"
 else
-	puts "You passed in arguements! YAY!"
 	generator = HtmlGenerator.new
 
 	if ARGV[0] == "index"
